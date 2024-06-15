@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  zoneminder:
+    container_name: zoneminder
+    image: linuxserver/zoneminder
+    ports:
+    - "8081:80"
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - ./config:/config
+    - ./data:/data
+    environment:
+    - TZ=America/Sao_Paulo
+    - PHP_TZ=Europe/Brussels
+    - PUID=1000
+    - GUID=1000
+    shm_size: 512M
+    restart: unless-stopped
